@@ -6,9 +6,9 @@ cpu_grads <-          c(1.0,20.0, 30.0, 40.0,35.0, 37.5, 60.0, 68, 100, 77, 85, 
 # We enable cooler around above 60 grad manually
 cpu_cooler_enable <-  c(0,0,0,0,0,0,1,1,1,1,1,1)
 y<-cpu_cooler_enable; x<-cpu_grads;
-iris_model <- glm(y~x, family = 'binomial')
+cpu_model <- glm(y~x, family = 'binomial')
 new_data <- data.frame(x=c(40))
-predict(iris_model, new_data, type="response")
+predict(cpu_model, new_data, type="response")
 
 
 
