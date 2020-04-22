@@ -9,5 +9,5 @@ y<-cpu_cooler_enable; x<-cpu_grads;
 cpu_model <- glm(y~x, family = 'binomial')
 needs_cooling <- function (value) {
   new_data <- data.frame(x=c(value))
-  return(predict(cpu_model, new_datas, type="response"))
+  return(predict(cpu_model, new_data, type="response"))
 }
