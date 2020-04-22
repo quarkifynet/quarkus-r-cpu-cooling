@@ -7,8 +7,7 @@ cpu_grads <-          c(1.0,20.0, 30.0, 40.0,35.0, 37.5, 60.0, 68, 100, 77, 85, 
 cpu_cooler_enable <-  c(0,0,0,0,0,0,1,1,1,1,1,1)
 y<-cpu_cooler_enable; x<-cpu_grads;
 cpu_model <- glm(y~x, family = 'binomial')
-new_data <- data.frame(x=c(40))
-predict(cpu_model, new_data, type="response")
-
-
-
+needs_cooling <- function (value) {
+  new_data <- data.frame(x=c(value))
+  return(predict(cpu_model, new_datas, type="response"))
+}

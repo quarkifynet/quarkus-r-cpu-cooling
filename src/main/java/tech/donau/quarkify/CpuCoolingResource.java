@@ -13,10 +13,11 @@ public class CpuCoolingResource {
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public String hello() throws IOException {
+    public String hello(@QueryParam("grads") Double grads) throws IOException {
         final URL cpuCoolingR = getClass().getClassLoader().getResource("cpu_cooling.R");
-        System.out.println(cpuCoolingR);
-        Value needs_cooling = context.eval(Source.newBuilder("R", cpuCoolingR).build());
-        return needs_cooling.asDouble() > 0.8 ? "Enable cooling" : "No need to enable cooling";
+        context.eval(Source.newBuilder("R", cpuCoolingR).build());
+        final Value needs_cooling = context.getBindings("R").getMember("needs_cooling");
+        final Value result = needs_cooling.execute(grads);
+        return result.asDouble() > 0.8 ? "Enable cooling" : "No need to enable cooling";
     }
 }
