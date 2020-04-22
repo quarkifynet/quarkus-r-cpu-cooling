@@ -20,7 +20,7 @@ public class CpuCoolingResource {
     public String hello() throws IOException {
         final URL cpuCoolingR = getClass().getClassLoader().getResource("cpu_cooling.R");
         System.out.println(cpuCoolingR);
-        Value needs_cooling = context.eval(Source.newBuilder("r", cpuCoolingR).build());
+        Value needs_cooling = context.eval(Source.newBuilder("R", cpuCoolingR).build());
         return needs_cooling.asDouble() > 0.8 ? "Enable cooling" : "No need to enable cooling";
     }
 }
